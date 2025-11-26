@@ -1,3 +1,4 @@
-./_extra/*
-./results/*
-./__pycache__/*
+/_extra/
+/results/
+/__pycache__/
+*.ipynb
