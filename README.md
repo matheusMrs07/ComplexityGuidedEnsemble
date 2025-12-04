@@ -51,7 +51,7 @@ O **Complexity-Guided Ensemble** é um método avançado de ensemble learning qu
 pip install numpy pandas scikit-learn joblib pyhard
 ```
 
-### Testar algoritmo com exxemplos de demonstração
+### Testar algoritmo com exemplos de demonstração
 ```bash
 # Testar sampler
 python demo_resampler.py
