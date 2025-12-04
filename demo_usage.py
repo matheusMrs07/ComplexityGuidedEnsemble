@@ -1,8 +1,6 @@
 """
 Exemplo Prático: Usando ComplexityGuidedSampler
 
-Este script demonstra como usar o sampler refatorado em um cenário real
-de classificação com dados desbalanceados.
 """
 
 import numpy as np
@@ -19,9 +17,9 @@ from sklearn.metrics import (
 )
 
 # Importar o sampler refatorado
-from complexity_sampler_refactored import (
+from complexity_guided_ensemble import (
     ComplexityGuidedSampler,
-    SamplerConfig
+    SamplerConfig,
 )
 
 

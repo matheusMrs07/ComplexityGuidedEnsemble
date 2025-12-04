@@ -1,5 +1,5 @@
 """
-Hybrid Resampling Method Based on Instance Complexity - Multiclass Version.
+Hybrid Resampling Method Based on Instance Complexity.
 
 This module implements a complexity-guided hybrid resampling approach that combines
 undersampling and oversampling strategies to balance highly imbalanced datasets
@@ -8,8 +8,6 @@ without losing relevant information or generating low-quality synthetic samples.
 Supports multiclass classification by treating each class independently and
 balancing towards the mean class size.
 
-Author: Adapted for multiclass support
-License: MIT
 """
 
 from typing import Optional, Callable, Literal, Tuple, Dict, List
@@ -24,14 +22,7 @@ from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.base import BaseEstimator, ClassifierMixin
 
-# Optional pyhard import - gracefully handle if not available
-try:
-    from pyhard.measures import ClassificationMeasures
-
-    PYHARD_AVAILABLE = True
-except ImportError:
-    PYHARD_AVAILABLE = False
-    ClassificationMeasures = None
+from pyhard.measures import ClassificationMeasures
 
 
 # ============================================================================
@@ -458,13 +449,13 @@ class ResamplingStrategy:
 
 
 # ============================================================================
-# MAIN SAMPLER CLASS - MULTICLASS VERSION
+# MAIN SAMPLER CLASS
 # ============================================================================
 
 
 class ComplexityGuidedSampler:
     """
-    Hybrid resampling method guided by instance complexity - Multiclass Version.
+    Hybrid resampling method guided by instance complexity.
 
     This sampler balances imbalanced datasets by:
     1. Calculating complexity metrics for each instance
@@ -554,7 +545,7 @@ class ComplexityGuidedSampler:
         self.X_train = df.drop(columns=[target_col]).to_numpy()
 
         # Initialize measures calculator if pyhard is available
-        if PYHARD_AVAILABLE:
+        if self.config.hardness_function is not None:
             # Rename columns to integers for pyhard compatibility
             orig_cols = list(df.columns)
             new_cols = list(range(len(orig_cols)))
@@ -799,23 +790,6 @@ class ComplexityGuidedSampler:
             "target_samples_per_class": self.target_samples_per_class,
             "n_classes": len(self.classes_),
         }
-
-
-# ============================================================================
-# LEGACY COMPATIBILITY
-# ============================================================================
-
-
-class Sampler(ComplexityGuidedSampler):
-    """Legacy class name for backward compatibility."""
-
-    def __init__(self, *args, **kwargs):
-        warnings.warn(
-            "Sampler is deprecated. Use ComplexityGuidedSampler instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        super().__init__(*args, **kwargs)
 
 
 # ============================================================================
