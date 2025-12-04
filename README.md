@@ -43,6 +43,54 @@ O **Complexity-Guided Ensemble** é um método avançado de ensemble learning qu
 | Interpretabilidade dos bags | Baixa | Baixa | **Alta (μ values)** |
 
 ---
+
+## ⚡ QUICK START GUIDE
+
+### Instalar Dependências
+```bash
+pip install numpy pandas scikit-learn joblib pyhard
+```
+
+### Testar algoritmo com exxemplos de demonstração
+```bash
+# Testar sampler
+python demo_resampler.py
+
+# Testar ensemble  
+python demo_ensemble.py
+```
+
+### Primeiro Código
+
+```python
+# Exemplo mínimo do sampler
+from complexity_sampler_refactored import ComplexityGuidedSampler
+from sklearn.datasets import make_classification
+import numpy as np
+
+X, y = make_classification(n_samples=1000, n_classes=2, weights=[0.9, 0.1])
+sampler = ComplexityGuidedSampler(random_state=42)
+X_bal, y_bal = sampler.fit_resample(X, y, mu=0.5, sigma=0.2, k_neighbors=5)
+
+print(f"Antes: {np.bincount(y)}")  # [900, 100]
+print(f"Depois: {np.bincount(y_bal)}")  # [500, 500]
+```
+
+```python
+# Exemplo mínimo do ensemble
+from complexity_guided_ensemble import ComplexityGuidedEnsemble
+
+ensemble = ComplexityGuidedEnsemble(n_estimators=5, random_state=42)
+ensemble.fit(X, y)
+predictions = ensemble.predict(X)
+
+print(f"Treinado com sucesso! Precisão: {(predictions == y).mean():.2f}")
+```
+
+---
+
+
+
 ## 📐 Algoritmo Detalhado
 
 ### Pseudocódigo Completo
