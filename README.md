@@ -1,16 +1,5 @@
 # 🎯 Complexity-Guided Ensemble - Documentação Técnica
 
-## 📋 Índice
-
-1. [Visão Geral](#visão-geral)
-2. [Arquitetura](#arquitetura)
-3. [Algoritmo Detalhado](#algoritmo-detalhado)
-4. [Componentes Principais](#componentes-principais)
-5. [Guia de Uso](#guia-de-uso)
-6. [Exemplos Avançados](#exemplos-avançados)
-7. [Performance e Benchmarks](#performance-e-benchmarks)
-8. [Referências Teóricas](#referências-teóricas)
-
 ---
 
 ## 🎓 Visão Geral
